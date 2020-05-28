@@ -1,0 +1,1 @@
+{"status":"failure","message":"One or more files failed signature validation","files":[{"filename":"ChurchCRM\/Config\/Menu\/Menu.php","status":"Hash Mismatch","expectedhash":"5390d0a60e24bb8560c02a08a10c0b542ba7da03","actualhash":"7b5c5fe772ff4215fab1795421413a2acef0763e"}]}

@@ -1,0 +1,32 @@
+[2020-05-06 15:35:35] defaultLogger.INFO: Installing ChurchCRM Schema [] {"url":"/churchcrm/index.php","remote_ip":"::1","correlation_id":"5eb2bd27e2228"}
+[2020-05-06 15:35:37] defaultLogger.INFO: Installed ChurchCRM Schema version: 4.0.3 [] {"url":"/churchcrm/index.php","remote_ip":"::1","correlation_id":"5eb2bd27e2228"}
+[2020-05-06 15:45:48] defaultLogger.INFO: Starting background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bf8c82ddc"}
+[2020-05-06 15:45:48] defaultLogger.INFO: Starting application integrity check [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bf8c82ddc"}
+[2020-05-06 15:45:48] defaultLogger.INFO: Signature file found at: /var/www/html/churchcrm/signatures.json [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bf8c82ddc"}
+[2020-05-06 15:45:49] defaultLogger.INFO: Application integrity check passed [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bf8c82ddc"}
+[2020-05-06 15:45:50] defaultLogger.INFO: Finished background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bf8c82ddc"}
+[2020-05-06 15:46:05] defaultLogger.INFO: Starting background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bf9d33925"}
+[2020-05-06 15:46:05] defaultLogger.INFO: Starting application integrity check [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bf9d33925"}
+[2020-05-06 15:46:05] defaultLogger.INFO: Signature file found at: /var/www/html/churchcrm/signatures.json [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bf9d33925"}
+[2020-05-06 15:46:05] defaultLogger.INFO: Application integrity check passed [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bf9d33925"}
+[2020-05-06 15:46:06] defaultLogger.INFO: Finished background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bf9d33925"}
+[2020-05-06 15:46:23] defaultLogger.INFO: Starting background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bfaf6b3b3"}
+[2020-05-06 15:46:23] defaultLogger.INFO: Starting application integrity check [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bfaf6b3b3"}
+[2020-05-06 15:46:23] defaultLogger.INFO: Signature file found at: /var/www/html/churchcrm/signatures.json [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bfaf6b3b3"}
+[2020-05-06 15:46:23] defaultLogger.INFO: Application integrity check passed [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bfaf6b3b3"}
+[2020-05-06 15:46:24] defaultLogger.INFO: Finished background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bfaf6b3b3"}
+[2020-05-06 15:46:30] defaultLogger.INFO: Starting background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bfb69de6e"}
+[2020-05-06 15:46:30] defaultLogger.INFO: Starting application integrity check [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bfb69de6e"}
+[2020-05-06 15:46:30] defaultLogger.INFO: Signature file found at: /var/www/html/churchcrm/signatures.json [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bfb69de6e"}
+[2020-05-06 15:46:30] defaultLogger.INFO: Application integrity check passed [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bfb69de6e"}
+[2020-05-06 15:46:32] defaultLogger.INFO: Finished background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bfb69de6e"}
+[2020-05-06 15:46:47] defaultLogger.INFO: Starting background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bfc784613"}
+[2020-05-06 15:46:47] defaultLogger.INFO: Starting application integrity check [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bfc784613"}
+[2020-05-06 15:46:47] defaultLogger.INFO: Signature file found at: /var/www/html/churchcrm/signatures.json [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bfc784613"}
+[2020-05-06 15:46:47] defaultLogger.INFO: Application integrity check passed [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bfc784613"}
+[2020-05-06 15:46:49] defaultLogger.INFO: Finished background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2bfc784613"}
+[2020-05-06 15:52:33] defaultLogger.INFO: Starting background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2c1212e4ee"}
+[2020-05-06 15:52:33] defaultLogger.INFO: Starting application integrity check [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2c1212e4ee"}
+[2020-05-06 15:52:33] defaultLogger.INFO: Signature file found at: /var/www/html/churchcrm/signatures.json [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2c1212e4ee"}
+[2020-05-06 15:52:33] defaultLogger.INFO: Application integrity check passed [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2c1212e4ee"}
+[2020-05-06 15:52:35] defaultLogger.INFO: Finished background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5eb2c1212e4ee"}
