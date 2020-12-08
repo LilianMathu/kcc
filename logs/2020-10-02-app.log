@@ -1,0 +1,27 @@
+[2020-10-02 08:54:50] defaultLogger.INFO: Starting background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76cebac8df8"}
+[2020-10-02 08:54:50] defaultLogger.INFO: Starting application integrity check [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76cebac8df8"}
+[2020-10-02 08:54:50] defaultLogger.INFO: Signature file found at: /var/www/html/churchcrm/signatures.json [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76cebac8df8"}
+[2020-10-02 08:54:50] defaultLogger.WARNING: File hash mismatch: ChurchCRM/Config/Menu/Menu.php. Expected: 5390d0a60e24bb8560c02a08a10c0b542ba7da03; Got: 7b5c5fe772ff4215fab1795421413a2acef0763e [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76cebac8df8"}
+[2020-10-02 08:54:51] defaultLogger.WARNING: Application integrity check failed: One or more files failed signature validation [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76cebac8df8"}
+[2020-10-02 08:54:53] defaultLogger.INFO: Finished background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76cebac8df8"}
+[2020-10-02 09:18:02] defaultLogger.INFO: Next upgrade step for 4.0.3 is : 4.0.5 [] {"url":"/churchcrm/Menu.php","remote_ip":"::1","correlation_id":"5f76d42abe3c7"}
+[2020-10-02 09:18:03] defaultLogger.INFO: Starting background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d42bd8e4e"}
+[2020-10-02 09:18:03] defaultLogger.INFO: Starting application integrity check [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d42bd8e4e"}
+[2020-10-02 09:18:03] defaultLogger.INFO: Signature file found at: /var/www/html/churchcrm/signatures.json [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d42bd8e4e"}
+[2020-10-02 09:18:03] defaultLogger.WARNING: File hash mismatch: ChurchCRM/Config/Menu/Menu.php. Expected: 5390d0a60e24bb8560c02a08a10c0b542ba7da03; Got: 7b5c5fe772ff4215fab1795421413a2acef0763e [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d42bd8e4e"}
+[2020-10-02 09:18:04] defaultLogger.WARNING: Application integrity check failed: One or more files failed signature validation [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d42bd8e4e"}
+[2020-10-02 09:18:05] defaultLogger.INFO: Finished background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d42bd8e4e"}
+[2020-10-02 09:18:18] defaultLogger.INFO: Next upgrade step for 4.0.3 is : 4.0.5 [] {"url":"/churchcrm/v2/calendar","remote_ip":"::1","correlation_id":"5f76d43a8a782"}
+[2020-10-02 09:18:19] defaultLogger.INFO: Starting background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d43beb83e"}
+[2020-10-02 09:18:19] defaultLogger.INFO: Starting application integrity check [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d43beb83e"}
+[2020-10-02 09:18:19] defaultLogger.INFO: Signature file found at: /var/www/html/churchcrm/signatures.json [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d43beb83e"}
+[2020-10-02 09:18:19] defaultLogger.WARNING: File hash mismatch: ChurchCRM/Config/Menu/Menu.php. Expected: 5390d0a60e24bb8560c02a08a10c0b542ba7da03; Got: 7b5c5fe772ff4215fab1795421413a2acef0763e [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d43beb83e"}
+[2020-10-02 09:18:20] defaultLogger.WARNING: Application integrity check failed: One or more files failed signature validation [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d43beb83e"}
+[2020-10-02 09:18:21] defaultLogger.INFO: Finished background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d43beb83e"}
+[2020-10-02 09:27:38] defaultLogger.INFO: Next upgrade step for 4.0.3 is : 4.0.5 [] {"url":"/churchcrm/Menu.php","remote_ip":"::1","correlation_id":"5f76d66ae8666"}
+[2020-10-02 09:27:40] defaultLogger.INFO: Starting background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d66c01c98"}
+[2020-10-02 09:27:40] defaultLogger.INFO: Starting application integrity check [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d66c01c98"}
+[2020-10-02 09:27:40] defaultLogger.INFO: Signature file found at: /var/www/html/churchcrm/signatures.json [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d66c01c98"}
+[2020-10-02 09:27:40] defaultLogger.WARNING: File hash mismatch: ChurchCRM/Config/Menu/Menu.php. Expected: 5390d0a60e24bb8560c02a08a10c0b542ba7da03; Got: 7b5c5fe772ff4215fab1795421413a2acef0763e [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d66c01c98"}
+[2020-10-02 09:27:40] defaultLogger.WARNING: Application integrity check failed: One or more files failed signature validation [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d66c01c98"}
+[2020-10-02 09:27:41] defaultLogger.INFO: Finished background job processing [] {"url":"/churchcrm/api/background/timerjobs","remote_ip":"::1","correlation_id":"5f76d66c01c98"}
