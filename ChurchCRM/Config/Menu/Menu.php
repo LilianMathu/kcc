@@ -45,6 +45,7 @@ class Menu
             "Reports" => self::getReportsMenu(),
             "Admin" => self::getAdminMenu(),
             "Custom" => self::getCustomMenu(),
+            "staff portal" => self::getStaffMenu(),
         );
         
     }
@@ -222,5 +223,13 @@ class Menu
         return $menu;
     }
     
+    public static function getStaffMenu() 
+    {
+        $menu = new MenuItem(gettext("Staff"), "", true, 'fa-gears');
+        $menu->addSubMenu(new MenuItem(gettext("Register"), "SystemSettings.php",AuthenticationManager::GetCurrentUser()->isAdmin()));
+        $menu->addSubMenu(new MenuItem(gettext("All staff"), "UserList.php",AuthenticationManager::GetCurrentUser()->isAdmin()));
+     
+        return $menu;
+    }
 
 }
