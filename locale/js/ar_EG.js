@@ -321,6 +321,7 @@ try {window.CRM.i18keys = {
     "That field name already exists.": "حقل الاسم موجود بالفعل",
     "Add New Field": "إضافة حقل جديد",
     "Family Editor": "تعديل العائلة",
+    "Assets Editor": "",
     "First name must be entered": "يجب ادخال الاسم الاول",
     "Invalid Year: allowable values are 1901 to 2155": "السنة غير صحيحة : القيمة المسموحة من 1901 حتى 2155",
     "Invalid Birth Date.": "تاريخ الميلاد غير صحيح",
