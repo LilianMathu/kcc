@@ -34,7 +34,7 @@ if (array_key_exists('previousPage', $_GET)) {
 // Security: User must have Add or Edit Records permission to use this form in those manners
 // Clean error handling: (such as somebody typing an incorrect URL ?PersonID= manually)
 if ($iPersonID > 0) {
-    $sSQL = 'SELECT per_fam_ID FROM person_per WHERE per_ID = '.$iPersonID;
+    $sSQL = 'SELECT per_fam_ID FROM person_per WHERE per_ID = ' . $iPersonID;
     $rsPerson = RunQuery($sSQL);
     extract(mysqli_fetch_array($rsPerson));
 
@@ -43,12 +43,9 @@ if ($iPersonID > 0) {
         exit;
     }
 
-    if (!(
-        AuthenticationManager::GetCurrentUser()->isEditRecordsEnabled() ||
+    if (!(AuthenticationManager::GetCurrentUser()->isEditRecordsEnabled() ||
         (AuthenticationManager::GetCurrentUser()->isEditSelfEnabled() && $iPersonID == AuthenticationManager::GetCurrentUser()->getId()) ||
-        (AuthenticationManager::GetCurrentUser()->isEditSelfEnabled() && $per_fam_ID > 0 && $per_fam_ID == AuthenticationManager::GetCurrentUser()->getPerson()->getFamId())
-    )
-    ) {
+        (AuthenticationManager::GetCurrentUser()->isEditSelfEnabled() && $per_fam_ID > 0 && $per_fam_ID == AuthenticationManager::GetCurrentUser()->getPerson()->getFamId()))) {
         RedirectUtils::Redirect('Menu.php');
         exit;
     }
@@ -70,17 +67,23 @@ while ($aRow = mysqli_fetch_array($rsSecurityGrp)) {
 if (isset($_POST['AssetSubmit']) || isset($_POST['AssetSubmitAndAdd'])) {
     //Get all the variables from the request object and assign them locally
     $sasset_name = InputUtils::LegacyFilterInput($_POST['AssetName']);
-    $serial_number = InputUtils::LegacyFilterInput($_POST['SerialNumber']);
-    $asset_condition = InputUtils::LegacyFilterInput($_POST['AssetCondition']);
-    $asset_description = InputUtils::LegacyFilterInput($_POST['AssetDescription']);
-    $asset_image = InputUtils::LegacyFilterInput($_POST['AssetImage']);
-    $assigned_to = InputUtils::LegacyFilterInput($_POST['AssignedTo']);
-    $assign_date = InputUtils::LegacyFilterInput($_POST['AssignDate']);
+    $iserial_number = InputUtils::LegacyFilterInput($_POST['SerialNumber']);
+    $iasset_condition = InputUtils::LegacyFilterInput($_POST['AssetCondition']);
+    $sasset_description = InputUtils::LegacyFilterInput($_POST['AssetDescription']);
+    $basset_image = InputUtils::LegacyFilterInput($_POST['AssetImage']);
+    $sassigned_to = InputUtils::LegacyFilterInput($_POST['AssignedTo']);
+    $dassign_date = InputUtils::LegacyFilterInput($_POST['AssignDate']);
 
+    //Add new asset
+    if ($iAssetId < 0) {
+        $sSQL = "INSERT INTO assets (asset_name, serial_number, asset_condition, asset_description, asset_image, assigned_to, assign_date)
+                VALUES ('" . $sasset_name . "','" . $iserial_number . "', '" . $iasset_condition . "',  '" . $sasset_description . "',  '" . $asset_image . "',  '" . $sassigned_to . "', '" . $dassign_date . "')";
 
+        //Execute the SQL
+        RunQuery($sSQL);
+    }
 
-
-
+    
 }
 require 'Include/Header.php';
 
@@ -161,7 +164,7 @@ require 'Include/Header.php';
                 <div class="row">
                     <div class=" col-md-6 form-group">
                         <label> Assign Date </label>
-                        <input type="date" min="0" class="form-control" value="" name="a_num" >
+                        <input type="date" min="0" class="form-control" value="" name="a_num">
                     </div>
                 </div>
                 <br>
