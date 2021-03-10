@@ -51,13 +51,7 @@ require 'Include/Header.php';
                 </div>
                 <br>
 
-                <div class="row">
-                    <div class=" col-md-6 form-group">
-                        <label> Quantity </label>
-                        <input type="number" min="0" class="form-control" value="" name="a_num" placeholder="Product Name">
-                    </div>
-                </div>
-                <br>
+               
 
                 <div class="row">
                     <div class="col-md-6 form-group">
