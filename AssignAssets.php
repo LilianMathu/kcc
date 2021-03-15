@@ -77,10 +77,12 @@ require 'Include/Header.php';
                 </div>
                 <br>
 
-                <div class="pull-right"><br />
+                <div class="pull-left"><br />
                     <input type="submit" class="btn btn-primary" value="<?= gettext('Save') ?>" name="FamilySubmit">
                 </div>
 
             </div>
         </div>
 </form>
+
+<?php require 'Include/Footer.php' ?>

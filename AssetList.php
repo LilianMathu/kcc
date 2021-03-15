@@ -24,3 +24,10 @@ require 'Include/Header.php';
 
 ?>
 
+
+<!-- HTML TABLE -->
+
+
+
+
+<?php require 'Include/Footer.php' ?>

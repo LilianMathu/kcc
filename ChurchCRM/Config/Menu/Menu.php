@@ -132,8 +132,13 @@ class Menu
     {
         $AssetsMenu = new MenuItem(gettext("Assets Management"), "", true, "fa-ticket");
         $AssetsMenu->addSubMenu(new MenuItem(gettext("Add assets"), "AddAssets.php", AuthenticationManager::GetCurrentUser()->isAddRecordsEnabled()));
+        $AssetsMenu->addSubMenu(new MenuItem(gettext("Add assets1"), "AssetEditor.php", AuthenticationManager::GetCurrentUser()->isAddRecordsEnabled()));
         $AssetsMenu->addSubMenu(new MenuItem(gettext("Assign assets"), "AssignAssets.php", AuthenticationManager::GetCurrentUser()->isAddRecordsEnabled()));
         $AssetsMenu->addSubMenu(new MenuItem(gettext("View Assets"), "AssetList.php"));
+        $AssetsMenu->addSubMenu(new MenuItem(gettext("Test Assets"), "TestAssets.php"));
+        $AssetsMenu->addSubMenu(new MenuItem(gettext("Test Assets2"), "Test2Assets.php"));
+
+
 
         return $AssetsMenu;
     }

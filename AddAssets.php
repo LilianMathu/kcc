@@ -64,32 +64,46 @@ while ($aRow = mysqli_fetch_array($rsSecurityGrp)) {
 }
 
 
+//push data from a form
 if (isset($_POST['AssetSubmit']) || isset($_POST['AssetSubmitAndAdd'])) {
     //Get all the variables from the request object and assign them locally
-    $sasset_name = InputUtils::LegacyFilterInput($_POST['AssetName']);
-    $iserial_number = InputUtils::LegacyFilterInput($_POST['SerialNumber']);
-    $iasset_condition = InputUtils::LegacyFilterInput($_POST['AssetCondition']);
-    $sasset_description = InputUtils::LegacyFilterInput($_POST['AssetDescription']);
-    $basset_image = InputUtils::LegacyFilterInput($_POST['AssetImage']);
-    $sassigned_to = InputUtils::LegacyFilterInput($_POST['AssignedTo']);
-    $dassign_date = InputUtils::LegacyFilterInput($_POST['AssignDate']);
+    $sassetName = InputUtils::LegacyFilterInput($_POST['assetName']);
+    $sserialNumber = InputUtils::LegacyFilterInput($_POST['serialNumber']);
+    $sassetCondition = InputUtils::LegacyFilterInput($_POST['assetCondition']);
+    $sassetDescription = InputUtils::LegacyFilterInput($_POST['assetDescription']);
+    $bassetImage = InputUtils::LegacyFilterInput($_POST['assetImage']);
+    $dpurchaseDate = InputUtils::LegacyFilterInput($_POST['purchaseDate']);
 
     //Add new asset
     if ($iAssetId < 0) {
-        $sSQL = "INSERT INTO assets (asset_name, serial_number, asset_condition, asset_description, asset_image, assigned_to, assign_date)
-                VALUES ('" . $sasset_name . "','" . $iserial_number . "', '" . $iasset_condition . "',  '" . $sasset_description . "',  '" . $asset_image . "',  '" . $sassigned_to . "', '" . $dassign_date . "')";
-
-        //Execute the SQL
-        RunQuery($sSQL);
+        $sSQL = "INSERT INTO assets (assetName, serialNumber, assetCondition, assetDescription, assetImage, purchaseDate)
+                    VALUES ('" . $sassetName . "','" . $iserialNumber . "', '" . $iassetCondition . "',  '" . $sassetDescription . "',  '" . $bassetImage . "', '" . $dpurchaseDate . "')";
+    } else {
+        //update fields
     }
 
-    
+    //Execute the SQL
+    RunQuery($sSQL);
+
+     // Check for redirection to another page after saving information: (ie. PersonEditor.php?previousPage=prev.php?a=1;b=2;c=3)
+     if ($sPreviousPage != '') {
+        $sPreviousPage = str_replace(';', '&', $sPreviousPage);
+        RedirectUtils::Redirect($sPreviousPage.$iPersonID);
+    } elseif (isset($_POST[''])) {
+        //Send to the view of this person
+        RedirectUtils::Redirect('AssetList.php?PersonID='.$iPersonID);
+    } else {
+        //Reload to editor to add another record
+        RedirectUtils::Redirect('AddAssets.php');
+    }
 }
+
+
 require 'Include/Header.php';
 
 ?>
 
-<form method="post" action="AddAssets.php">
+<form method="post" action="AddAssets.php?PersonID=<?= $iPersonID ?>" name="AddAssets">
     <div class="box box-info clearfix">
         <div class="box-header">
             <h3 class="box-title"><?= gettext('Assets Info') ?></h3>
@@ -100,7 +114,7 @@ require 'Include/Header.php';
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label><?= gettext('Asset Name') ?>:</label>
-                        <input type="text" Name="Name" placeholder="Name" id="AssetName" value="<?= htmlentities(stripslashes($sAssetName), ENT_NOQUOTES, 'UTF-8') ?>" maxlength="48" class="form-control">
+                        <input type="text" Name="Asset_name" placeholder="Name" id="AssetName" value="<?= htmlentities(stripslashes($sassetName), ENT_NOQUOTES, 'UTF-8') ?>" maxlength="48" class="form-control">
                         <?php if ($sAssetNameError) {
                         ?><font color="red"><?= $sAssetNameError ?></font><?php
                                                                         }                       ?>
@@ -108,12 +122,16 @@ require 'Include/Header.php';
                 </div>
                 <br>
 
-
-
                 <div class="row">
                     <div class="col-md-6 form-group">
-                        <label> Serial Number</label>
-                        <textarea name="description" placeholder="serial number" class="form-control" required value=""></textarea>
+                        <label><?= gettext('Serial Number') ?>:</label>
+                        <textarea 
+                        name="Serial_Number)" 
+                        placeholder="serial number" 
+                        class="form-control" 
+                        value="<?= htmlentities(stripslashes($sserialNumber), ENT_NOQUOTES, 'UTF-8') ?>"
+                        >
+                        </textarea>
                     </div>
                 </div>
                 <br>
@@ -121,58 +139,68 @@ require 'Include/Header.php';
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label><?= gettext('Asset Condition') ?>: </label>
-                        <select name="Condition" class="form-control">
-                            <option value="0"><?= gettext('Unassigned') ?></option>
-                            <option value="0" disabled>-----------------------</option>
-                            <?php while ($aRow = mysqli_fetch_array($rsClassifications)) {
-                                extract($aRow);
-                                echo '<option value="' . $lst_OptionID . '"';
-                                if ($iClassification == $lst_OptionID) {
-                                    echo ' selected';
-                                }
-                                echo '>' . $lst_OptionName . '&nbsp;';
-                            } ?>
-                        </select>
+                        <div>
+                            <label for="New" class="radio-inline">
+                                <input type="radio" name="AssetCondition" value="<?= htmlentities(stripslashes($sassetCondition), ENT_NOQUOTES, 'UTF-8') ?>" id="new">New</label>
+                            </label>
+                            <label for="Used" class="radio-inline">
+                                <input type="radio" name="AssetCondition" value="<?= htmlentities(stripslashes($sassetCondition), ENT_NOQUOTES, 'UTF-8') ?>" id="used">Used</label>
+                            </label>
+
+                        </div>
                     </div>
                 </div>
                 <br>
 
                 <div class="row">
                     <div class="col-md-6 form-group">
-                        <label> Assets Description</label>
-                        <textarea name="description" class="form-control" placeholder="Description" required value=""></textarea>
+                        <label> <?= gettext('Asset Description') ?>:</label>
+                        <textarea 
+                        name="Asset_description" 
+                        class="form-control" 
+                        placeholder="Description" 
+                        value="<?= htmlentities(stripslashes($sassetDescription), ENT_NOQUOTES, 'UTF-8') ?>">
+                        </textarea>
                     </div>
                 </div>
                 <br>
 
                 <div class="row">
                     <div class="col-md-6 form-group">
-                        <label>Asset Image </label>
-                        <input type="file" value="" class="form-control" name="asset_img" id="up_img">
+                        <label><?= gettext('Asset Image') ?>: </label>
+                        <input type="file" 
+                        value="<?= htmlentities(stripslashes($bassetImage), ENT_NOQUOTES, 'UTF-8') ?>" 
+                        class="form-control" 
+                        name="asset_img" 
+                        id="up_img">
+                    </div>
+                </div>
+                <br>
+
+
+
+                <div class="row">
+                    <div class=" col-md-6 form-group">
+                        <label> <?= gettext('Purchase Date') ?>: </label>
+                        <input 
+                        type="date" 
+                        min="0" 
+                        class="form-control" 
+                        value="<?= htmlentities(stripslashes($dpurchaseDate), ENT_NOQUOTES, 'UTF-8') ?>" 
+                        name="assigned_date">
                     </div>
                 </div>
                 <br>
 
                 <div class="row">
-                    <div class=" col-md-6 form-group">
-                        <label> Assign to </label>
-                        <input type="number" min="0" class="form-control" value="" name="a_num" placeholder="Assign to">
-                    </div>
+                    <input type="submit" class="btn btn-primary" id="AssetSaveButton" value="<?= gettext('Save') ?>" name="AssetSubmit">
+                    <?php if (AuthenticationManager::GetCurrentUser()->isAddRecordsEnabled()) {
+                        echo '<input type="submit" class="btn btn-primary" value="' . gettext('Save and Add') . '" name="AssetSubmitAndAdd">';
+                    } ?>
+                    <input type="button" class="btn btn-primary" value="<?= gettext('Cancel') ?>" name="AssetCancel" onclick="javascript:document.location='v2/people';">
                 </div>
-                <br>
-
-                <div class="row">
-                    <div class=" col-md-6 form-group">
-                        <label> Assign Date </label>
-                        <input type="date" min="0" class="form-control" value="" name="a_num">
-                    </div>
-                </div>
-                <br>
-
-                <div class="pull-right"><br />
-                    <input type="submit" class="btn btn-primary" value="<?= gettext('Save') ?>" name="FamilySubmit">
-                </div>
-
             </div>
         </div>
 </form>
+
+<?php require 'Include/Footer.php' ?>
