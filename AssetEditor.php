@@ -4,27 +4,19 @@ require 'Include/Config.php';
 require 'Include/Functions.php';
 require 'Include/CanvassUtilities.php';
 
-use ChurchCRM\dto\SystemConfig;
-use ChurchCRM\Note;
+// use ChurchCRM\dto\SystemConfig;
+// use ChurchCRM\Note;
+// use ChurchCRM\Emails\NewPersonOrFamilyEmail;
+// use ChurchCRM\PersonQuery;
+// use ChurchCRM\dto\Photo;
+// use ChurchCRM\dto\SystemURLs;
+// use ChurchCRM\Utils\RedirectUtils;
+// use ChurchCRM\Utils\LoggerUtils;
 use ChurchCRM\Utils\InputUtils;
-use ChurchCRM\Emails\NewPersonOrFamilyEmail;
-use ChurchCRM\PersonQuery;
-use ChurchCRM\dto\Photo;
-use ChurchCRM\dto\SystemURLs;
-use ChurchCRM\Utils\RedirectUtils;
-use ChurchCRM\Utils\LoggerUtils;
 use ChurchCRM\Authentication\AuthenticationManager;
 
 //Set page title
 $sPageTitle = gettext('Asset Editor');
-
-
-//New asset add
-
-
-
-require 'Include/Header.php';
-
 
 //DB fields
 if (isset($_POST['AssetSubmit']) || isset($_POST['AssetSubmitAndAdd'])) {
@@ -37,6 +29,28 @@ if (isset($_POST['AssetSubmit']) || isset($_POST['AssetSubmitAndAdd'])) {
     $bassetImage = InputUtils::LegacyFilterInput($_POST['assetImage']);
     $dpurchaseDate = InputUtils::LegacyFilterInput($_POST['purchaseDate']);
 }
+
+//New asset add
+// if($iassetID < 1){
+    $sSQL = "INSERT INTO assets(assetName, serialNumber, assetCondition, assetDescription, assetCategory, assetImage, purchaseDate)
+                VALUES('".$sassetName."', '".$sserialNumber."', '".$iassetCondition."', '".$sassetDescription."', '".$sassetCategory."', '".$bassetImage."', '".$dpurchaseDate."',)";
+
+// $sassetName = "laptop";
+//  echo $iassetID;
+// } else {
+//     $sSQL = "UPDATE assets SET assetName = '".$sassetName."', serialNumber = '".$sserialNumber."',  assetCondition = '".$iassetCondition."', assetDescription = '".$sassetDescription."', assetCategory = '".$sassetCategory."', assetImage = '".$bassetImage."',  purchaseDate = '".$dpurchaseDate."'   ";
+// }
+
+//Photo
+
+ //Execute the SQL
+ RunQuery($sSQL);
+
+
+require 'Include/Header.php';
+
+
+
 ?>
 
 <form method="post" action="AssetEditor.php" name="AssetEditor">
