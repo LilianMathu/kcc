@@ -441,7 +441,7 @@ if (isset($_POST['PersonSubmit']) || isset($_POST['PersonSubmitAndAdd'])) {
         if ($sPreviousPage != '') {
             $sPreviousPage = str_replace(';', '&', $sPreviousPage);
             RedirectUtils::Redirect($sPreviousPage.$iPersonID);
-        } elseif (isset($_POST[''])) {
+        } elseif (isset($_POST['PersonSubmit'])) {
             //Send to the view of this person
             RedirectUtils::Redirect('PersonView.php?PersonID='.$iPersonID);
         } else {

@@ -1,7 +1,6 @@
 // Source: locale/JSONKeys/af_ZA.json
 try {window.CRM.i18keys = {
     "Cannot execute query.": "Kan nie navraag uitvoer nie",
-    "Assets": "Assets Editor",
     "Delete": "Vee uit",
     "Cancel": "Kanseleer",
     "Save": "Stoor",

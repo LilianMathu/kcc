@@ -1,94 +1,118 @@
 <?php
+//Include the function library
 require 'Include/Config.php';
 require 'Include/Functions.php';
+require 'Include/CanvassUtilities.php';
+
+use ChurchCRM\dto\SystemConfig;
+use ChurchCRM\Note;
+use ChurchCRM\Utils\InputUtils;
+use ChurchCRM\Emails\NewPersonOrFamilyEmail;
+use ChurchCRM\PersonQuery;
+use ChurchCRM\dto\Photo;
+use ChurchCRM\dto\SystemURLs;
+use ChurchCRM\Utils\RedirectUtils;
+use ChurchCRM\Utils\LoggerUtils;
+use ChurchCRM\Authentication\AuthenticationManager;
+
+//Set page title
+$sPageTitle = gettext('Asset Editor');
 
 
-//Populate Database fields
-$id = (isset($_POST['id']) ? $_POST['id'] : '');
-$assetName = (isset($_POST['assetName']) ? $_POST['assetName'] : '');
-$serialNumber = (isset($_POST['serialNumber']) ? $_POST['serialNumber'] : '');
-$assetCondition = (isset($_POST['assetCondition']) ? $_POST['assetCondition'] : '');
-$assetDescription = (isset($_POST['assetDescription']) ? $_POST['assetDescription'] : '');
-$assetImage = (isset($_POST['assetImage']) ? $_POST['assetImage'] : '');
-$purchaseDate = date("Y-m-d H:i:s");
-
-
-//Database setup
-$conn = new mysqli('localhost', 'root', '', 'churchcrm');
-if ($conn->connect_error) {
-    die('Connection failed: ' . $conn->connect_error);
-} else {
-    $stmt = $conn->prepare("INSERT INTO assets (assetName, serialNumber, assetCondition, assetDescription, assetImage, purchaseDate)
-        VALUES(?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sss", $assetName, $serialNumber, $assetCondition, $assetDescription, $assetImage, $purchaseDate);
-    $stmt->execute();
-
-    echo "New records created successfully";
-
-    $stmt->close();
-    $conn->close();
-}
+//New asset add
 
 
 
-
-
-
-//Set the page title
 require 'Include/Header.php';
 
 
-
-
+//DB fields
+if (isset($_POST['AssetSubmit']) || isset($_POST['AssetSubmitAndAdd'])) {
+    //Get all the variables from the request object and assign them locally
+    $sassetName = InputUtils::LegacyFilterInput($_POST['assetName']);
+    $sserialNumber = InputUtils::LegacyFilterInput($_POST['serialNumber']);
+    $iassetCondition = InputUtils::LegacyFilterInput($_POST['assetCondition'], 'int');
+    $sassetDescription = InputUtils::LegacyFilterInput($_POST['assetDescription']);
+    $sassetCategory= InputUtils::LegacyFilterInput($_POST['assetCategory']);
+    $bassetImage = InputUtils::LegacyFilterInput($_POST['assetImage']);
+    $dpurchaseDate = InputUtils::LegacyFilterInput($_POST['purchaseDate']);
+}
 ?>
 
-<div class="container">
-    <div class="row col-md-6 col-md-offset-3">
-        <div class="panel panel-primary">
-            <div class="panel-heading text-center">
-                <h1>Add assets</h1>
+<form method="post" action="AssetEditor.php" name="AssetEditor">
+    <div class="box box-info clearfix">
+        <div class="box-header">
+            <h3 class="box-title"><?= gettext('Add Assets') ?></h3>
+        </div>
+
+        <div class="box-body">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="Asset Name"><?= gettext('Asset Name') ?>:</label>
+                        <input type="text" name="assetName" id="assetName" value="<?= htmlentities(stripslashes($sassetName), ENT_NOQUOTES, 'UTF-8') ?>" class="form-control">
+                    </div>
+                </div>
+                <p />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="Serial Number"><?= gettext('Serial Number') ?>:</label>
+                        <input type="text" name="serialNumber" id="serialNumber" value="<?= htmlentities(stripslashes($sserialNumber), ENT_NOQUOTES, 'UTF-8') ?>" class="form-control">
+                    </div>
+                </div>
+                <p />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="Asset Condition"><?= gettext('Asset Condition') ?>:</label>
+                        <input type="text" name="assetCondition" id="assetCondition" value="<?= htmlentities(stripslashes($iassetCondition), ENT_NOQUOTES, 'UTF-8') ?>" class="form-control">
+                    </div>
+                </div>
+                <p />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="Asset Description"><?= gettext('Asset Description') ?>:</label>
+                        <input type="text" name="assetDescription" id="assetDescription" value="<?= htmlentities(stripslashes($sassetDescription), ENT_NOQUOTES, 'UTF-8') ?>" class="form-control">
+                    </div>
+                </div>
+                <p />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="Asset Category"><?= gettext('Asset Category') ?>:</label>
+                        <input type="text" name="assetCategory" id="assetCategory" value="<?= htmlentities(stripslashes($sassetCategory), ENT_NOQUOTES, 'UTF-8') ?>" class="form-control">
+                    </div>
+                </div>
+                <p />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="Asset Image"><?= gettext('Asset Image') ?>:</label>
+                        <input type="file" name="assetImage" id="assetImage" value="<?= htmlentities(stripslashes($bassetImage), ENT_NOQUOTES, 'UTF-8') ?>" class="form-control">
+                    </div>
+                </div>
+                <p />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="Purchase Date"><?= gettext('Purchase Date') ?>:</label>
+                        <input type="date" name="purchaseDate" id="purchaseDate" value="<?= htmlentities(stripslashes($dpurchaseDate), ENT_NOQUOTES, 'UTF-8') ?>" class="form-control">
+                    </div>
+                </div>
+                <p />
+
             </div>
-            <div class="panel-body">
-                <form action="AssetEditor.php" method="post">
-
-                    <div class="form-group">
-                        <label for="assetName">Asset Name</label>
-                        <input type="text" class="form-control" id="assetName" name="assetName" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="serialNumber">Serial Number</label>
-                        <input type="number" class="form-control" id="serialNumber" name="serialNumber" />
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label for="assetCondition">Asset Condition</label>
-                        <input type="radio" name="assetCondition" value="New"> New
-                        <input type="radio" name="assetCondition" value="Used"> Used
-                    </div>
-                    <br>
-
-                    <div class="form-group">
-                        <label for="assetDescription">Asset Descritpion</label>
-                        <input type="text" class="form-control" id="assetDescription" name="assetDescription" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="assetImage">Asset Image</label>
-                        <input type="file" class="form-control" id="assetImage" name="assetImage" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="purchaseDate">Purchase Date</label>
-                        <input type="date" class="form-control" id="purchaseDate" name="purchaseDate" />
-                    </div>
-
-                    <input type="submit" class="btn btn-primary" />
-                </form>
-            </div>
+            <input type="submit" class="btn btn-primary" id="AssetSaveButton" value="<?= gettext('Save') ?>" name="AssetSubmit">
+            <?php if (AuthenticationManager::GetCurrentUser()->isAddRecordsEnabled()) {
+                    echo '<input type="submit" class="btn btn-primary" value="' . gettext('Save and Add') . '" name="AssetSubmitAndAdd">';
+                } ?>
+            <input type="button" class="btn btn-primary" value="<?= gettext('Cancel') ?>" name="AssetCancel">
 
         </div>
-    </div>
-</div>
+
+
+</form>
 
 <?php require 'Include/Footer.php' ?>

@@ -1,7 +1,7 @@
 <?php
 /*******************************************************************************
  *
- *  filename    : .php
+ *  filename    : Register.php
  *  website     : http://www.churchcrm.io
  *  copyright   : Copyright 2005 Michael Wilt
   *

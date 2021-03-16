@@ -58,7 +58,6 @@ $peopleWithBirthDays = MenuEventsCount::getBirthDates();
 $Anniversaries = MenuEventsCount::getAnniversaries();
 $peopleWithBirthDaysCount = MenuEventsCount::getNumberBirthDates();
 $AnniversariesCount = MenuEventsCount::getNumberAnniversaries();
- 
 
 if ($showBanner && ($peopleWithBirthDaysCount > 0 || $AnniversariesCount > 0)) {
     ?>

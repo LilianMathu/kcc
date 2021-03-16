@@ -33,7 +33,7 @@ $rsFamilyRoles = RunQuery($sSQL);
 $sSQL = 'SELECT * FROM group_grp ORDER BY grp_Name';
 $rsGroups = RunQuery($sSQL);
 
-$sSQL = 'SELECT person_custom_master.* FROM person__master ORDER BY custom_Order';
+$sSQL = 'SELECT person_custom_master.* FROM person_custom_master ORDER BY custom_Order';
 $rsCustomFields = RunQuery($sSQL);
 $numCustomFields = mysqli_num_rows($rsCustomFields);
 

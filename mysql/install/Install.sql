@@ -1344,7 +1344,3 @@ ALTER TABLE `roles`
   MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 update version_ver set ver_update_end = now();
-
-
-
--- Table structure for `staff`
