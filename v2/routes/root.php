@@ -51,7 +51,7 @@ function viewDashboard(Request $request, Response $response, array $args)
 
     $pageArgs = [
         'sRootPath' => SystemURLs::getRootPath(),
-        'sPageTitle' => gettext('Welcome to').' '. ChurchMetaData::getChurchName(),
+        'sPageTitle' => gettext('Welcome to').' '. ChurchMetaData::getChurchName()  .'<br>' .'<i><small> A place to belong, a place to become</small></i>',
         'dashboardCounts' => $dashboardCounts,
         'sundaySchoolEnabled' => SystemConfig::getBooleanValue("bEnabledSundaySchool"),
         'depositEnabled' => AuthenticationManager::GetCurrentUser()->isFinanceEnabled()
