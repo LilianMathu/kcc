@@ -81,7 +81,7 @@ $MenuFirst = 1;
         <ul class="nav navbar-nav">
             <li class="dropdown tasks-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                    <i class="flag-icon flag-icon-squared"></i>
+                    <!-- <i class="flag-icon flag-icon-squared"></i> -->
                 </a>
                 <ul class="dropdown-menu">
                     <li class="header">
