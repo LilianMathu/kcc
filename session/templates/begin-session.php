@@ -12,7 +12,7 @@ require SystemURLs::getDocumentRoot() . '/Include/HeaderNotLoggedIn.php';
 <div class="login-box" id="Login">
     <div class="login-logo">
     
-    <a href = "#"> <img src="../Images/Kcc_Logo_white_bg" height="150px" width="140px" >  </a>
+    <a href = "#"> <img src="../Images/kcc-image" height="150px" width="150px" >  </a>
         <!-- <b>Logo-goes-here</b> -->
     </div>
 
