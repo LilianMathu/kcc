@@ -4,19 +4,27 @@ require 'Include/Config.php';
 require 'Include/Functions.php';
 require 'Include/CanvassUtilities.php';
 
-// use ChurchCRM\dto\SystemConfig;
-// use ChurchCRM\Note;
-// use ChurchCRM\Emails\NewPersonOrFamilyEmail;
-// use ChurchCRM\PersonQuery;
-// use ChurchCRM\dto\Photo;
-// use ChurchCRM\dto\SystemURLs;
-// use ChurchCRM\Utils\RedirectUtils;
-// use ChurchCRM\Utils\LoggerUtils;
+use ChurchCRM\dto\SystemConfig;
+use ChurchCRM\Note;
 use ChurchCRM\Utils\InputUtils;
+use ChurchCRM\Emails\NewPersonOrFamilyEmail;
+use ChurchCRM\PersonQuery;
+use ChurchCRM\dto\Photo;
+use ChurchCRM\dto\SystemURLs;
+use ChurchCRM\Utils\RedirectUtils;
+use ChurchCRM\Utils\LoggerUtils;
 use ChurchCRM\Authentication\AuthenticationManager;
 
 //Set page title
 $sPageTitle = gettext('Asset Editor');
+
+
+//New asset add
+
+
+
+require 'Include/Header.php';
+
 
 //DB fields
 if (isset($_POST['AssetSubmit']) || isset($_POST['AssetSubmitAndAdd'])) {
@@ -30,6 +38,7 @@ if (isset($_POST['AssetSubmit']) || isset($_POST['AssetSubmitAndAdd'])) {
     // $dpurchaseDate = InputUtils::LegacyFilterInput($_POST['purchaseDate']);
    $dpurchaseDate2 = date('Y-m-d h:i:s', strtotime($dpurchaseDate));
 }
+<<<<<<< HEAD
 
 //New asset add
 if($iassetID < 1){
@@ -46,6 +55,8 @@ if($iassetID < 1){
 
 require 'Include/Header.php';
 
+=======
+>>>>>>> parent of 34be30e (add assets)
 ?>
 
 <form method="post" action="AssetEditor.php" name="AssetEditor">
