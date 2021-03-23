@@ -196,7 +196,7 @@ function RunQuery($sSQL, $bStopOnError = true)
         return false;
     }
 }
-
+echo $sLogLevel;
 //
 // Adds a volunteer opportunity assignment to a person
 //

@@ -115,7 +115,7 @@ foreach ($ListItem as $element) {
                         </span>
                     </a>
 
-                    <?php if (!isset($_SESSION['aPeopleCart']) || !in_array($per_ID, $_SESSION['aPeopleCart'], false)) {
+                    <?php if (!isset($_SESSION['aPeople Cart']) || !in_array($per_ID, $_SESSION['aPeopleCart'], false)) {
                             ?>
                           <a class="AddToPeopleCart" data-cartpersonid="<?= $person->getId() ?>">
                         <span class="fa-stack">
