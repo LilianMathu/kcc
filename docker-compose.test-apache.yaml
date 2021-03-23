@@ -22,7 +22,7 @@ services:
       dockerfile: Dockerfile.churchcrm-apache-test-debian
     image: churchcrm/crm:php7.3-debian
     ports:
-      - "80:80"
+      - "8080:80"
     volumes:
       - ./wamp64/www/kcc/
     links:
