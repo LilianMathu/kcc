@@ -38,7 +38,10 @@ class Menu
             "People" => self::getPeopleMenu(),
             // "Ministries" => self::getGroupMenu(),
             "SundaySchool" => self::getSundaySchoolMenu(),
+<<<<<<< HEAD
             // "Assets" => self::getAssetsMenu(),
+=======
+>>>>>>> parent of aca8c4e (add assets module)
             "Email" => new MenuItem(gettext("Email"), "v2/email/dashboard", SystemConfig::getBooleanValue("bEnabledEmail"), 'fa-envelope'),
             "Events" => self::getEventsMenu(),
             "Deposits" => self::getDepositsMenu(),
@@ -128,6 +131,7 @@ class Menu
         return $sundaySchoolMenu;
     }
 
+<<<<<<< HEAD
     private static function getAssetsMenu()
     {
         $AssetsMenu = new MenuItem(gettext("Assets Management"), "", true, "fa-ticket");
@@ -141,6 +145,8 @@ class Menu
         return $AssetsMenu;
     }
 
+=======
+>>>>>>> parent of aca8c4e (add assets module)
     private static function getEventsMenu()
     {
         $eventsMenu = new MenuItem(gettext("Events"), "", SystemConfig::getBooleanValue("bEnabledEvents"), 'fa-ticket');
