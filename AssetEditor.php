@@ -27,11 +27,8 @@ if (isset($_POST['AssetSubmit']) || isset($_POST['AssetSubmitAndAdd'])) {
     $sassetDescription = InputUtils::LegacyFilterInput($_POST['assetDescription']);
     $sassetCategory= InputUtils::LegacyFilterInput($_POST['assetCategory']);
     $bassetImage = InputUtils::LegacyFilterInput($_POST['assetImage']);
-    $dpurchaseDate = InputUtils::LegacyFilterInput($_POST['purchaseDate']);
+    // $dpurchaseDate = InputUtils::LegacyFilterInput($_POST['purchaseDate']);
    $dpurchaseDate2 = date('Y-m-d h:i:s', strtotime($dpurchaseDate));
-
-
-    // $dpurchaseDate = date('Y-m-d H:i:s');
 }
 
 //New asset add
@@ -48,8 +45,6 @@ if($iassetID < 1){
 
 
 require 'Include/Header.php';
-
-
 
 ?>
 
