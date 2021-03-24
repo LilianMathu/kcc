@@ -1192,7 +1192,7 @@ require 'Include/Header.php';
                             ?>
     <div class="box box-info clearfix">
         <div class="box-header">
-            <h3 class="box-title"><?= gettext('Custom Fields') ?></h3>
+            <h3 class="box-title"><?= gettext('Other Info') ?></h3>
             <div class="pull-right"><br/>
                 <input type="submit" class="btn btn-primary" value="<?= gettext('Save') ?>" name="PersonSubmit">
             </div>
