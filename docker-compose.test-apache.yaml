@@ -9,7 +9,7 @@ services:
     ports:
       - "3308:3306"
     env_file:
-      - .env
+      - .env-example
     networks:
       - default
     volumes:
@@ -28,4 +28,4 @@ services:
     links:
       - database
     env_file:
-      - .env
+      - .env-example
