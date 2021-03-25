@@ -1,3 +1,9 @@
+##### Config
+Include/Config.php
+
+##### Vendor directory
+vendor
+
 ##### Windows
 # Windows thumbnail cache files
 Thumbs.db
