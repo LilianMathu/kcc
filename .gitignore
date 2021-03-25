@@ -4,6 +4,9 @@ Include/Config.php
 ##### Vendor directory
 vendor
 
+##### .env file
+.env
+
 ##### Windows
 # Windows thumbnail cache files
 Thumbs.db
