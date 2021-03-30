@@ -134,7 +134,8 @@ class Menu
         $AssetsMenu->addSubMenu(new MenuItem(gettext("Add new assets"), "AssetEditor.php", AuthenticationManager::GetCurrentUser()->isAddRecordsEnabled()));
         $AssetsMenu->addSubMenu(new MenuItem(gettext("Assign assets"), "AssignAssets.php", AuthenticationManager::GetCurrentUser()->isAddRecordsEnabled()));
         $AssetsMenu->addSubMenu(new MenuItem(gettext("View Assets"), "AssetList.php"));
-      
+        $AssetsMenu->addSubMenu(new MenuItem(gettext("View Asset Assignment"), "AssetAssignmentList.php"));
+  
 
 
 
