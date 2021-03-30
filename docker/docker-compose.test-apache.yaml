@@ -13,7 +13,7 @@ services:
     networks:
       - default
     volumes:
-      - ../db-dump:/docker-entrypoint-initdb.d # auto-load the demo database as per: https://hub.docker.com/_/mariadb
+      - /opt/kcc/db-dump:/docker-entrypoint-initdb.d # auto-load the demo database as per: https://hub.docker.com/_/mariadb
 
   webserver:
     ## Look into: https://hub.docker.com/r/nimmis/apache-php7
@@ -24,7 +24,7 @@ services:
     ports:
       - "8081:80"
     volumes:
-      - ../../.:/var/www/html
+      - /opt/kcc:/var/www/html
     links:
       - database
     env_file:
