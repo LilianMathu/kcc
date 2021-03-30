@@ -1,5 +1,9 @@
+##### churchcrm files
+integrityCheck.json
+
 ##### Config
 Include/Config.php
+Config.php
 
 ##### Vendor directory
 vendor
