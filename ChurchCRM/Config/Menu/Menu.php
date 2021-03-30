@@ -38,10 +38,7 @@ class Menu
             "People" => self::getPeopleMenu(),
             // "Ministries" => self::getGroupMenu(),
             "SundaySchool" => self::getSundaySchoolMenu(),
-<<<<<<< HEAD
             // "Assets" => self::getAssetsMenu(),
-=======
->>>>>>> parent of aca8c4e (add assets module)
             "Email" => new MenuItem(gettext("Email"), "v2/email/dashboard", SystemConfig::getBooleanValue("bEnabledEmail"), 'fa-envelope'),
             "Events" => self::getEventsMenu(),
             "Deposits" => self::getDepositsMenu(),
@@ -131,28 +128,22 @@ class Menu
         return $sundaySchoolMenu;
     }
 
-<<<<<<< HEAD
     private static function getAssetsMenu()
     {
         $AssetsMenu = new MenuItem(gettext("Assets Management"), "", true, "fa-ticket");
-<<<<<<< HEAD
         $AssetsMenu->addSubMenu(new MenuItem(gettext("Add new assets"), "AssetEditor.php", AuthenticationManager::GetCurrentUser()->isAddRecordsEnabled()));
         $AssetsMenu->addSubMenu(new MenuItem(gettext("Assign assets"), "AssignAssets.php", AuthenticationManager::GetCurrentUser()->isAddRecordsEnabled()));
         $AssetsMenu->addSubMenu(new MenuItem(gettext("View Assets"), "AssetList.php"));
       
 
 
-=======
         $AssetsMenu->addSubMenu(new MenuItem(gettext("Add assets"), "AddAssets.php", AuthenticationManager::GetCurrentUser()->isAddRecordsEnabled()));
         $AssetsMenu->addSubMenu(new MenuItem(gettext("Assign assets"), "AssignAssets.php", AuthenticationManager::GetCurrentUser()->isAddRecordsEnabled()));
         $AssetsMenu->addSubMenu(new MenuItem(gettext("View Assets"), "AssetList.php"));
->>>>>>> parent of e6d242b (add asset module)
 
         return $AssetsMenu;
     }
 
-=======
->>>>>>> parent of aca8c4e (add assets module)
     private static function getEventsMenu()
     {
         $eventsMenu = new MenuItem(gettext("Events"), "", SystemConfig::getBooleanValue("bEnabledEvents"), 'fa-ticket');
