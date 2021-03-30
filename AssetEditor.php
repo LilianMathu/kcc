@@ -35,36 +35,8 @@ if (isset($_POST['AssetSubmit']) || isset($_POST['AssetSubmitAndAdd'])) {
     $sassetDescription = InputUtils::LegacyFilterInput($_POST['assetDescription']);
     $sassetCategory= InputUtils::LegacyFilterInput($_POST['assetCategory']);
     $bassetImage = InputUtils::LegacyFilterInput($_POST['assetImage']);
-<<<<<<< HEAD
-    // $dpurchaseDate = InputUtils::LegacyFilterInput($_POST['purchaseDate']);
-   $dpurchaseDate2 = date('Y-m-d h:i:s', strtotime($dpurchaseDate));
-=======
     $dpurchaseDate = InputUtils::LegacyFilterInput($_POST['purchaseDate']);
->>>>>>> parent of 5ea01f5 (add assets module)
 }
-<<<<<<< HEAD
-
-//New asset add
-// if($iassetID < 1){
-    $sSQL = "INSERT INTO assets(assetName, serialNumber, assetCondition, assetDescription, assetCategory, assetImage, purchaseDate)
-                VALUES('".$sassetName."', '".$sserialNumber."', '".$iassetCondition."', '".$sassetDescription."', '".$sassetCategory."', '".$bassetImage."', '".$dpurchaseDate."',)";
-
-// $sassetName = "laptop";
-//  echo $iassetID;
-// } else {
-//     $sSQL = "UPDATE assets SET assetName = '".$sassetName."', serialNumber = '".$sserialNumber."',  assetCondition = '".$iassetCondition."', assetDescription = '".$sassetDescription."', assetCategory = '".$sassetCategory."', assetImage = '".$bassetImage."',  purchaseDate = '".$dpurchaseDate."'   ";
-// }
-
-//Photo
-
- //Execute the SQL
- RunQuery($sSQL);
-
-
-require 'Include/Header.php';
-
-=======
->>>>>>> parent of 34be30e (add assets)
 ?>
 
 <form method="post" action="AssetEditor.php" name="AssetEditor">
