@@ -55,7 +55,6 @@ RunQuery($sSQL);
           <th scope="col">Condition</th>
           <th scope="col">Category</th>
           <th scope="col">Action</th>
-
         </tr>
       </thead>
       <tbody>
@@ -67,11 +66,11 @@ RunQuery($sSQL);
           <td><?php echo $row['assetID'] ?></td>
           <td><?php echo $row['assetName'] ?></td>
           <td><?php echo $row['serialNumber'] ?></td>
-          <td><?php echo $row['quantity'] ?></td>
+          <td><?php echo $row['quantity'] ?></td> 
           <td><?php echo $row['assetCondition'] ?></td>
           <td><?php echo $row['assetCategory'] ?></td>
           <td>
-          <a href="AssetEditor.php?edit=<?php echo $row['assetID']; ?>" class="btn btn-info">Edit</a>
+          <a href="AssetEditor.php?update=1&id=<?php echo $row['assetID']; ?>" class="btn btn-info">Update</a>
           <a href="AssetList.php?delete=<?php echo $row['assetID']; ?>" class="btn btn-danger">Delete</a>
           </td>
         </tr>
