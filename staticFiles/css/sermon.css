@@ -1,0 +1,56 @@
+.sermon-main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  -webkit-transition: all 1.3s ease-out;
+  transition: all 1.3s ease-out;
+}
+
+.sermon-main > div:first-child {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1/4;
+}
+
+.sermon-main > div:first-child iframe {
+  height: 500px;
+}
+
+.sermon-main > div p {
+  text-align: center;
+  color: gray;
+}
+
+.sermon-main > div iframe {
+  width: 100%;
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .sermon-main {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+  .sermon-main > div:first-child {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-column: 1/3;
+  }
+}
+
+@media (max-width: 768px) {
+  .sermon-main {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+  .sermon-main > div:first-child {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-column: 1/2;
+  }
+  .sermon-main > div:not(:first-child) iframe {
+    height: 350px;
+  }
+}
+/*# sourceMappingURL=sermon.css.map */

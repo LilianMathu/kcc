@@ -1,0 +1,45 @@
+.sermon-main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    transition: all 1.3s ease-out;
+    >div:first-child {
+        grid-column: 1/4;
+        iframe {
+            height: 500px;
+        }
+    }
+    >div {
+        p {
+            text-align: center;
+            color: gray;
+        }
+        iframe {
+            width: 100%;
+
+        }
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .sermon-main {
+        grid-template-columns: repeat(2, 1fr);
+        >div:first-child {
+            grid-column: 1/3;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .sermon-main {
+        grid-template-columns: 1fr;
+        >div:first-child {
+            grid-column: 1/2;
+        }
+        >div:not(:first-child) {
+            iframe {
+                height: 350px;
+            }
+        }
+    }
+}

@@ -39,6 +39,7 @@ class Menu
             "Ministries" => self::getGroupMenu(),
             "SundaySchool" => self::getSundaySchoolMenu(),
             "Assets" => self::getAssetsMenu(),
+            "SundayServices" => self::getSundayServicesMenu(),
             "Email" => new MenuItem(gettext("Email"), "v2/email/dashboard", SystemConfig::getBooleanValue("bEnabledEmail"), 'fa-envelope'),
             "Events" => self::getEventsMenu(),
             "Deposits" => self::getDepositsMenu(),
@@ -128,6 +129,8 @@ class Menu
         return $sundaySchoolMenu;
     }
 
+    
+
     private static function getAssetsMenu()
     {
         $AssetsMenu = new MenuItem(gettext("Assets Management"), "", true, "fa-ticket");
@@ -135,11 +138,20 @@ class Menu
         $AssetsMenu->addSubMenu(new MenuItem(gettext("Assign assets"), "AssignAssets.php", AuthenticationManager::GetCurrentUser()->isAddRecordsEnabled()));
         $AssetsMenu->addSubMenu(new MenuItem(gettext("View Assets"), "AssetList.php"));
         $AssetsMenu->addSubMenu(new MenuItem(gettext("View Asset Assignment"), "AssetAssignmentList.php"));
-  
-
-
 
         return $AssetsMenu;
+    }
+
+    private static function getSundayServicesMenu()
+    {
+        $SundayServicesMenu = new MenuItem(gettext("Sunday Services"), "", true, "fa-user");
+        $SundayServicesMenu->addSubMenu(new MenuItem(gettext("Add a new sermon"), "SermonEditor.php", AuthenticationManager::GetCurrentUser()->isAddRecordsEnabled()));
+        $SundayServicesMenu->addSubMenu(new MenuItem(gettext("View all sermons"), "SermonList.php"));
+        $SundayServicesMenu->addSubMenu(new MenuItem(gettext("Youtube Videos"), "SermonVideo.php"));
+        
+
+
+        return $SundayServicesMenu;
     }
 
     private static function getEventsMenu()
