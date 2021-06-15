@@ -75,7 +75,7 @@ if (isset($_POST['FundRaiserSubmit'])) {
             $sSQL = 'SELECT MAX(fr_ID) AS iFundRaiserID FROM fundraiser_fr';
             $rsFundRaiserID = RunQuery($sSQL);
             extract(mysqli_fetch_array($rsFundRaiserID));
-            $_SESSION['iCurrentFundraiser'] = $iFundRaiserID;
+            $['iCurrentFundraiser'] = $iFundRaiserID;
         }
 
         if (isset($_POST['FundRaiserSubmit'])) {

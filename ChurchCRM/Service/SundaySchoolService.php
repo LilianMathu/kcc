@@ -9,7 +9,7 @@ class SundaySchoolService
         $sSQL = 'select grp.grp_id, grp.grp_name, lst.lst_OptionName, count(*) as total
               from person_per,group_grp grp, person2group2role_p2g2r person_grp, list_lst lst
             where grp_Type = 4
-              and grp.grp_ID = person_grp.p2g2r_grp_ID
+              and grp.grp_id = person_grp.p2g2r_grp_ID
               and person_grp.p2g2r_per_ID = per_ID
               and lst.lst_ID = grp.grp_RoleListID
               and lst.lst_OptionID = person_grp.p2g2r_rle_ID

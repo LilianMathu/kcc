@@ -23,6 +23,9 @@ use ChurchCRM\Utils\RedirectUtils;
 use ChurchCRM\Utils\LoggerUtils;
 use ChurchCRM\Authentication\AuthenticationManager;
 
+//Start a new session
+session_start();
+
 //Set the page title
 $sPageTitle = gettext('Person Editor');
 
@@ -441,10 +444,13 @@ if (isset($_POST['PersonSubmit']) || isset($_POST['PersonSubmitAndAdd'])) {
             $sPreviousPage = str_replace(';', '&', $sPreviousPage);
             RedirectUtils::Redirect($sPreviousPage.$iPersonID);
         } elseif (isset($_POST['PersonSubmit'])) {
+
             //Send to the view of this person
+            $_SESSION['message'] = "Record has been saved!";
             RedirectUtils::Redirect('PersonView.php?PersonID='.$iPersonID);
         } else {
             //Reload to editor to add another record
+            $_SESSION['message'] = "Record has been saved!";
             RedirectUtils::Redirect('PersonEditor.php');
         }
     }
@@ -599,6 +605,20 @@ $rsFamilyRoles = RunQuery($sSQL);
 require 'Include/Header.php';
 
 ?>
+
+<?php if(isset($_SESSION['message'])): ?>
+
+    <div class="alert alert-success">
+            <?php 
+                echo $_SESSION['message'];
+            ?>
+    </div>
+
+<?php endif; ?>
+
+<?php unset($_SESSION['message']); ?>
+
+
 <form method="post" action="PersonEditor.php?PersonID=<?= $iPersonID ?>" name="PersonEditor">
     <div class="alert alert-info alert-dismissable">
         <i class="fa fa-info"></i>
@@ -1229,7 +1249,7 @@ require 'Include/Header.php';
     </div>
   <?php
                         } ?>
-    <input type="submit" class="btn btn-primary" id="PersonSaveButton" value="<?= gettext('Save') ?>" name="PersonSubmit">
+    <input type="submit" class="btn btn-primary" id="PersonSaveButton" value="<?= gettext('Save') ?>" name="PersonSubmit" onsubmit="alert('New person added');">
     <?php if (AuthenticationManager::GetCurrentUser()->isAddRecordsEnabled()) {
                             echo '<input type="submit" class="btn btn-primary" value="'.gettext('Save and Add').'" name="PersonSubmitAndAdd">';
                         } ?>

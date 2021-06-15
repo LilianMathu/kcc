@@ -218,7 +218,7 @@ namespace ChurchCRM
           session_cache_limiter('private_no_expire:');
           session_name($sessionName);
           session_start();
-          self::$bootStrapLogger->debug("Session initialized: " . $sessionName);
+          self::$bootStrapLogger->debug("Session initialized: " . $Name);
       }
       private static function configureLogging()
       {
