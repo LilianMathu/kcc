@@ -4,77 +4,77 @@ namespace ChurchCRM\Service;
 
 class SundaySchoolService
 {
-    public function getClassStats()
-    {
-        $sSQL = 'select grp.grp_id, grp.grp_name, lst.lst_OptionName, count(*) as total
-              from person_per,group_grp grp, person2group2role_p2g2r person_grp, list_lst lst
-            where grp_Type = 4
-              and grp.grp_ID = person_grp.p2g2r_grp_ID
-              and person_grp.p2g2r_per_ID = per_ID
-              and lst.lst_ID = grp.grp_RoleListID
-              and lst.lst_OptionID = person_grp.p2g2r_rle_ID
-              group by grp.grp_name, lst.lst_OptionName
-              order by grp.grp_name, lst.lst_OptionName';
-        $rsClassCounts = RunQuery($sSQL);
-        $classInfo = [];
-        $lastClassId = 0;
+  public function getClassStats()
+  {
+    $sSQL = 'SELECT 
+        grp.grp_id, grp.grp_name, lst.lst_OptionName, count(person_grp.p2g2r_grp_ID) AS total
+      FROM group_grp grp
+      LEFT JOIN list_lst lst ON grp.grp_RoleListID = lst.lst_ID
+      LEFT JOIN person2group2role_p2g2r person_grp ON person_grp.p2g2r_grp_ID = grp.grp_ID AND person_grp.p2g2r_rle_ID = lst.lst_OptionID
+      LEFT JOIN person_per per ON person_grp.p2g2r_per_ID = per.per_ID 
+      WHERE grp.grp_type = 4
+      GROUP BY grp.grp_name, lst.lst_OptionName
+      ORDER BY grp.grp_name, lst.lst_OptionName';
+    $rsClassCounts = RunQuery($sSQL);
+    $classInfo = [];
+    $lastClassId = 0;
+    $curClass = [];
+    while ($row = mysqli_fetch_assoc($rsClassCounts)) {
+      if ($lastClassId != $row['grp_id']) {
+        if ($lastClassId != 0) {
+          array_push($classInfo, $curClass);
+        }
         $curClass = [];
-        while ($row = mysqli_fetch_assoc($rsClassCounts)) {
-            if ($lastClassId != $row['grp_id']) {
-                if ($lastClassId != 0) {
-                    array_push($classInfo, $curClass);
-                }
-                $curClass = [];
-                $curClass['id'] = $row['grp_id'];
-                $curClass['name'] = $row['grp_name'];
-            }
-            if ($row['lst_OptionName'] == 'Teacher') {
-                $curClass['teachers'] = $row['total'];
-            } elseif ($row['lst_OptionName'] == 'Student') {
-                $curClass['kids'] = $row['total'];
-            }
+        $curClass['id'] = $row['grp_id'];
+        $curClass['name'] = $row['grp_name'];
+      }
+      if ($row['lst_OptionName'] == 'Teacher') {
+        $curClass['teachers'] = $row['total'];
+      } elseif ($row['lst_OptionName'] == 'Student') {
+        $curClass['kids'] = $row['total'];
+      }
 
-            if ($lastClassId != $row['grp_id']) {
-                $lastClassId = $row['grp_id'];
-            }
-        }
-        if (!empty($curClass)) {
-            array_push($classInfo, $curClass);
-        }
-
-        return $classInfo;
+      if ($lastClassId != $row['grp_id']) {
+        $lastClassId = $row['grp_id'];
+      }
+    }
+    if (!empty($curClass)) {
+      array_push($classInfo, $curClass);
     }
 
-    public function getClassByRole($groupId, $role)
-    {
-        $sql = 'select person_per.*
+    return $classInfo;
+  }
+
+  public function getClassByRole($groupId, $role)
+  {
+    $sql = 'select person_per.*
               from person_per,group_grp grp, person2group2role_p2g2r person_grp, list_lst lst
-            where grp.grp_ID = '.$groupId."
+            where grp.grp_ID = ' . $groupId . "
               and grp_Type = 4
               and grp.grp_ID = person_grp.p2g2r_grp_ID
               and person_grp.p2g2r_per_ID = per_ID
               and lst.lst_ID = grp.grp_RoleListID
               and lst.lst_OptionID = person_grp.p2g2r_rle_ID
-              and lst.lst_OptionName = '".$role."'
+              and lst.lst_OptionName = '" . $role . "'
             order by per_FirstName";
-        $rsMembers = RunQuery($sql);
-        $members = [];
-        while ($row = mysqli_fetch_assoc($rsMembers)) {
-            array_push($members, $row);
-        }
-
-        return $members;
+    $rsMembers = RunQuery($sql);
+    $members = [];
+    while ($row = mysqli_fetch_assoc($rsMembers)) {
+      array_push($members, $row);
     }
 
-    public function getKidsGender($groupId)
-    {
-        $kids = $this->getClassByRole($groupId, 'Student');
-        $boys = 0;
-        $girls = 0;
-        $unknown = 0;
+    return $members;
+  }
 
-        foreach ($kids as $kid) {
-            switch ($kid['per_Gender']) {
+  public function getKidsGender($groupId)
+  {
+    $kids = $this->getClassByRole($groupId, 'Student');
+    $boys = 0;
+    $girls = 0;
+    $unknown = 0;
+
+    foreach ($kids as $kid) {
+      switch ($kid['per_Gender']) {
         case 1:
           $boys++;
           break;
@@ -84,29 +84,29 @@ class SundaySchoolService
         default:
           $unknown++;
       }
-        }
-
-        return ['Boys' => $boys, 'Girls' => $girls, 'Unknown' => $unknown];
     }
 
-    public function getKidsBirthdayMonth($groupId)
-    {
-        $kids = $this->getClassByRole($groupId, 'Student');
-        $Jan = 0;
-        $Feb = 0;
-        $Mar = 0;
-        $Apr = 0;
-        $May = 0;
-        $June = 0;
-        $July = 0;
-        $Aug = 0;
-        $Sept = 0;
-        $Oct = 0;
-        $Nov = 0;
-        $Dec = 0;
+    return ['Boys' => $boys, 'Girls' => $girls, 'Unknown' => $unknown];
+  }
 
-        foreach ($kids as $kid) {
-            switch ($kid['per_BirthMonth']) {
+  public function getKidsBirthdayMonth($groupId)
+  {
+    $kids = $this->getClassByRole($groupId, 'Student');
+    $Jan = 0;
+    $Feb = 0;
+    $Mar = 0;
+    $Apr = 0;
+    $May = 0;
+    $June = 0;
+    $July = 0;
+    $Aug = 0;
+    $Sept = 0;
+    $Oct = 0;
+    $Nov = 0;
+    $Dec = 0;
+
+    foreach ($kids as $kid) {
+      switch ($kid['per_BirthMonth']) {
         case 1:
           $Jan++;
           break;
@@ -144,9 +144,10 @@ class SundaySchoolService
           $Dec++;
           break;
       }
-        }
+    }
 
-        return ['Jan' => $Jan,
+    return [
+      'Jan' => $Jan,
       'Feb'       => $Feb,
       'Mar'       => $Mar,
       'Apr'       => $Apr,
@@ -159,11 +160,11 @@ class SundaySchoolService
       'Nov'       => $Nov,
       'Dec'       => $Dec,
     ];
-    }
+  }
 
-    public function getKidsFullDetails($groupId)
-    {
-        // Get all the groups
+  public function getKidsFullDetails($groupId)
+  {
+    // Get all the groups
     $sSQL = 'select grp.grp_Name sundayschoolClass, kid.per_ID kidId, kid.per_Gender kidGender, 
                 kid.per_FirstName firstName, kid.per_Email kidEmail, kid.per_LastName LastName, 
                   kid.per_BirthDay birthDay,  kid.per_BirthMonth birthMonth, kid.per_BirthYear birthYear, 
@@ -180,38 +181,38 @@ class SundaySchoolService
                 left Join person_per dad on fam.fam_id = dad.per_fam_id and dad.per_Gender = 1 and ( dad.per_fmr_ID = 1 or dad.per_fmr_ID = 2)
                 left join person_per mom on fam.fam_id = mom.per_fam_id and mom.per_Gender = 2 and (mom.per_fmr_ID = 1 or mom.per_fmr_ID = 2),`group_grp` grp, `person2group2role_p2g2r` person_grp
 
-            where kid.per_fam_id = fam.fam_ID and grp.grp_ID = '.$groupId."
+            where kid.per_fam_id = fam.fam_ID and grp.grp_ID = ' . $groupId . "
               and fam.fam_DateDeactivated is null
               and grp_Type = 4 and grp.grp_ID = person_grp.p2g2r_grp_ID  and person_grp.p2g2r_per_ID = kid.per_ID
               and lst.lst_OptionID = person_grp.p2g2r_rle_ID and lst.lst_ID = grp.grp_RoleListID and lst.lst_OptionName = 'Student'
 
             order by grp.grp_Name, fam.fam_Name";
 
-        $rsKids = RunQuery($sSQL);
-        $kids = [];
-        while ($row = mysqli_fetch_assoc($rsKids)) {
-            array_push($kids, $row);
-        }
-
-        return $kids;
+    $rsKids = RunQuery($sSQL);
+    $kids = [];
+    while ($row = mysqli_fetch_assoc($rsKids)) {
+      array_push($kids, $row);
     }
 
-    public function getKidsWithoutClasses()
-    {
-        $sSQL = 'select kid.per_ID kidId, kid.per_FirstName firstName, kid.per_LastName LastName, kid.per_BirthDay birthDay,  kid.per_BirthMonth birthMonth, kid.per_BirthYear birthYear, kid.per_CellPhone mobilePhone, kid.per_Flags flags,
-              fam.fam_Address1 Address1, fam.fam_Address2 Address2, fam.fam_City city, fam.fam_State state, fam.fam_Zip zip
-            from person_per kid, family_fam fam
-            where per_fam_id = fam.fam_ID and per_cls_ID in (1,2) and kid.per_fmr_ID = 3 and
-              fam.fam_DateDeactivated is null and
-              per_ID not in
-	              (select per_id from person_per,group_grp grp, person2group2role_p2g2r person_grp
-		              where person_grp.p2g2r_rle_ID = 2 and grp_Type = 4 and grp.grp_ID = person_grp.p2g2r_grp_ID  and person_grp.p2g2r_per_ID = kid.per_ID)';
-        $rsKidsMissing = RunQuery($sSQL);
-        $kids = [];
-        while ($row = mysqli_fetch_array($rsKidsMissing)) {
-            array_push($kids, $row);
-        }
+    return $kids;
+  }
 
-        return $kids;
+  public function getKidsWithoutClasses()
+  {
+    $sSQL = 'SELECT per_ID, per_FirstName, per_LastName, per_BirthYear, year(CURRENT_DATE()) - (person_per.per_BirthYear) as age, per_Address1
+FROM person_per
+where year(CURRENT_DATE()) - (person_per.per_BirthYear) < 18
+AND per_ID not in
+(select per_ID from person_per,
+group_grp grp, person2group2role_p2g2r person_grp
+where person_grp.p2g2r_rle_ID = 2 and grp_Type = 4 and grp.grp_ID = person_grp.p2g2r_grp_ID and person_grp.p2g2r_per_ID = per_ID)';
+
+    $rsKidsMissing = RunQuery($sSQL);
+    $kidsNotInClass = [];
+    while ($row = mysqli_fetch_array($rsKidsMissing)) {
+      array_push($kidsNotInClass, $row);
     }
+
+    return $kidsNotInClass;
+  }
 }
