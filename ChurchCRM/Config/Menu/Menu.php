@@ -35,7 +35,7 @@ class Menu
             "Dashboard" => new MenuItem(gettext("Dashboard"), "Menu.php", true, 'fa-dashboard'),
             "Calendar" => self::getCalendarMenu(),
             "People" => self::getPeopleMenu(),
-            "Groups" => self::getGroupMenu(),
+            // "Groups" => self::getGroupMenu(),
             "SundaySchool" => self::getSundaySchoolMenu(),
             "Email" => new MenuItem(gettext("Email"), "v2/email/dashboard", SystemConfig::getBooleanValue("bEnabledEmail"), 'fa-envelope'),
             "Events" => self::getEventsMenu(),
