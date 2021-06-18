@@ -200,39 +200,24 @@ require '../Include/Header.php';
     <table id="sundayschoolMissing" class="table table-striped table-bordered data-table" cellspacing="0" width="100%">
       <thead>
       <tr>
-        <th></th>
         <th><?= gettext('First Name') ?></th>
         <th><?= gettext('Last Name') ?></th>
         <th><?= gettext('Birth Date') ?></th>
         <th><?= gettext('Age') ?></th>
-        <th><?= gettext('Home Address') ?></th>
       </tr>
       </thead>
-      <tbody>
-      <?php
+      <tr>
+        <tbody>
+          <?php foreach ($kidsWithoutClasses as $child) {  ?>
+            <td><?= $child['per_FirstName'] ?></td>
+            <td><?= $child['per_LastName'] ?></td>
+            <td><?= $child['per_BirthYear'] ?></td>
+            <td><?= $child['age'] ?></td>
+      </tr>
+    <?php }
+ 
+    ?>
 
-      foreach ($kidsWithoutClasses as $child) {
-          extract($child);
-
-          $hideAge = $flags == 1 || $birthYear == '' || $birthYear == '0';
-          $birthDate = MiscUtils::FormatBirthDate($birthYear, $birthMonth, $birthDay, '-', $flags);
-
-          echo '<tr>';
-          echo "<td><a href='../PersonView.php?PersonID=".$kidId."'>";
-          echo '	<span class="fa-stack">';
-          echo '	<i class="fa fa-square fa-stack-2x"></i>';
-          echo '	<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>';
-          echo '	</span></a></td>';
-          echo '<td>'.$firstName.'</td>';
-          echo '<td>'.$LastName.'</td>';
-          echo '<td>'.$birthDate.'</td>';
-          echo "<td>".MiscUtils::FormatAge($birthMonth, $birthDay, $birthYear, $hideAge)."</td>";
-          echo '<td>'.$Address1.' '.$Address2.' '.$city.' '.$state.' '.$zip.'</td>';
-          echo '</tr>';
-      }
-
-      ?>
-      </tbody>
     </table>
   </div>
 </div>
