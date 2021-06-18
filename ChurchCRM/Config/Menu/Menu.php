@@ -41,8 +41,8 @@ class Menu
             "Events" => self::getEventsMenu(),
             "Deposits" => self::getDepositsMenu(),
             "Fundraiser" => self::getFundraisersMenu(),
-            "AssetsManagement" => self::getAssetsManagamentMenu(),
-            "Reports" => self::getReportsMenu(),
+            // "AssetsManagement" => self::getAssetsManagamentMenu(),
+            // "Reports" => self::getReportsMenu(),
             "Admin" => self::getAdminMenu(),
             "Custom" => self::getCustomMenu(),
         );
