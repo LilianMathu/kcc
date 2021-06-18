@@ -154,7 +154,7 @@ require '../Include/Header.php';
         <?php foreach ($classStats as $class) {
         ?>
           <tr>
-            <td style="width:80px">
+            <td style="width:100px">
               <a href='SundaySchoolClassView.php?groupId=<?= $class['id'] ?>'>
                 <span class="fa-stack">
                   <i class="fa fa-square fa-stack-2x"></i>
@@ -165,6 +165,12 @@ require '../Include/Header.php';
                 <span class="fa-stack">
                   <i class="fa fa-square fa-stack-2x"></i>
                   <i class="fa fa fa-pencil fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+              <a href='<?= SystemURLs::getRootPath() ?>/GroupView.php?GroupID=<?= $class['id'] ?>'>
+                <span class="fa-stack">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
                 </span>
               </a>
             </td>
