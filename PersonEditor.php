@@ -446,11 +446,11 @@ if (isset($_POST['PersonSubmit']) || isset($_POST['PersonSubmitAndAdd'])) {
         } elseif (isset($_POST['PersonSubmit'])) {
 
             //Send to the view of this person
-            $_SESSION['message'] = "Record has been saved!";
+          
+            sleep(2);
             RedirectUtils::Redirect('PersonView.php?PersonID='.$iPersonID);
         } else {
             //Reload to editor to add another record
-            $_SESSION['message'] = "Record has been saved!";
             RedirectUtils::Redirect('PersonEditor.php');
         }
     }
@@ -619,7 +619,8 @@ require 'Include/Header.php';
 <?php unset($_SESSION['message']); ?>
 
 
-<form method="post" action="PersonEditor.php?PersonID=<?= $iPersonID ?>" name="PersonEditor">
+<form method="post" action="PersonEditor.php?PersonID=<?= $iPersonID ?>" id="new_person_form" name="PersonEditor">
+<div class="alert alert-success person_success" id="record_saved">Record saved successfully! </div>
     <div class="alert alert-info alert-dismissable">
         <i class="fa fa-info"></i>
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -1246,7 +1247,9 @@ require 'Include/Header.php';
                                 }
                             } ?>
         </div>
+        
     </div>
+
   <?php
                         } ?>
     <input type="submit" class="btn btn-primary" id="PersonSaveButton" value="<?= gettext('Save') ?>" name="PersonSubmit" onsubmit="alert('New person added');">
@@ -1254,7 +1257,7 @@ require 'Include/Header.php';
                             echo '<input type="submit" class="btn btn-primary" value="'.gettext('Save and Add').'" name="PersonSubmitAndAdd">';
                         } ?>
     <input type="button" class="btn btn-primary" value="<?= gettext('Cancel') ?>" name="PersonCancel"
-           onclick="javascript:document.location='v2/people';">
+           onclick="javascript:setTimeout(document.location='v2/people',5000);">
 </form>
 
 <script nonce="<?= SystemURLs::getCSPNonce() ?>" >
@@ -1262,6 +1265,16 @@ require 'Include/Header.php';
 		$("[data-mask]").inputmask();
 		$("#famailyId").select2();;
 	});
+</script>
+<script>
+const personForm = document.getElementById('new_person_form');
+personForm.addEventListener('submit',(e)=>{
+    const alert = document.getElementById('record_saved');
+    alert.classList.add('block')
+    
+    setTimeout(()=>alert.classList.remove('block'),5000)
+
+})
 </script>
 
 <?php require 'Include/Footer.php' ?>

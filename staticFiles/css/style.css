@@ -1,0 +1,25 @@
+.person_success{
+    position: fixed;
+    width: max-content;
+    top: 53px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: none;
+}
+
+.block{
+    display:  block !important;
+    animation: appear 0.2s ease-in-out 1;
+}
+
+@keyframes appear {
+    0%{
+        top: 0;
+        opacity: .1;
+    }
+    100%{
+        top: 53px;
+        opacity: 1;
+    }
+}
