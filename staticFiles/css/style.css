@@ -8,7 +8,7 @@
     display: none;
 }
 
-.block{
+.disp-block{
     display:  block !important;
     animation: appear 0.2s ease-in-out 1;
 }

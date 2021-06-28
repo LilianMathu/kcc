@@ -23,9 +23,6 @@ use ChurchCRM\Utils\RedirectUtils;
 use ChurchCRM\Utils\LoggerUtils;
 use ChurchCRM\Authentication\AuthenticationManager;
 
-//Start a new session
-session_start();
-
 //Set the page title
 $sPageTitle = gettext('Person Editor');
 
@@ -605,19 +602,6 @@ $rsFamilyRoles = RunQuery($sSQL);
 require 'Include/Header.php';
 
 ?>
-
-<?php if(isset($_SESSION['message'])): ?>
-
-    <div class="alert alert-success">
-            <?php 
-                echo $_SESSION['message'];
-            ?>
-    </div>
-
-<?php endif; ?>
-
-<?php unset($_SESSION['message']); ?>
-
 
 <form method="post" action="PersonEditor.php?PersonID=<?= $iPersonID ?>" id="new_person_form" name="PersonEditor">
 <div class="alert alert-success person_success" id="record_saved">Record saved successfully! </div>
@@ -1252,12 +1236,12 @@ require 'Include/Header.php';
 
   <?php
                         } ?>
-    <input type="submit" class="btn btn-primary" id="PersonSaveButton" value="<?= gettext('Save') ?>" name="PersonSubmit" onsubmit="alert('New person added');">
+    <input type="submit" class="btn btn-primary" id="PersonSaveButton" value="<?= gettext('Save') ?>" name="PersonSubmit">
     <?php if (AuthenticationManager::GetCurrentUser()->isAddRecordsEnabled()) {
                             echo '<input type="submit" class="btn btn-primary" value="'.gettext('Save and Add').'" name="PersonSubmitAndAdd">';
                         } ?>
     <input type="button" class="btn btn-primary" value="<?= gettext('Cancel') ?>" name="PersonCancel"
-           onclick="javascript:setTimeout(document.location='v2/people',5000);">
+           onclick="javascript:setTimeout(document.location='v2/people',3000);">
 </form>
 
 <script nonce="<?= SystemURLs::getCSPNonce() ?>" >
@@ -1270,9 +1254,9 @@ require 'Include/Header.php';
 const personForm = document.getElementById('new_person_form');
 personForm.addEventListener('submit',(e)=>{
     const alert = document.getElementById('record_saved');
-    alert.classList.add('block')
+    alert.classList.add('disp-block')
     
-    setTimeout(()=>alert.classList.remove('block'),5000)
+    setTimeout(()=>alert.classList.remove('disp-block'),3000)
 
 })
 </script>
