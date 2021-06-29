@@ -23,9 +23,9 @@ services:
       dockerfile: Dockerfile.churchcrm-apache-test-debian
     #image: churchcrm/crm:php7.3-debian
     ports:
-      - "8081:80"
+      - "80:80"
     volumes:
-      - /opt/kcc:/var/www/html
+      - /home/lmathu/kcc:/var/www/html
     links:
       - database
     env_file:
