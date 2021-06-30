@@ -603,8 +603,7 @@ require 'Include/Header.php';
 
 ?>
 
-<form method="post" action="PersonEditor.php?PersonID=<?= $iPersonID ?>" id="new_person_form" name="PersonEditor">
-<div class="alert alert-success person_success" id="record_saved">Record saved successfully! </div>
+<form method="post" action="PersonEditor.php?PersonID=<?= $iPersonID ?>" name="PersonEditor">
     <div class="alert alert-info alert-dismissable">
         <i class="fa fa-info"></i>
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -1241,7 +1240,7 @@ require 'Include/Header.php';
                             echo '<input type="submit" class="btn btn-primary" value="'.gettext('Save and Add').'" name="PersonSubmitAndAdd">';
                         } ?>
     <input type="button" class="btn btn-primary" value="<?= gettext('Cancel') ?>" name="PersonCancel"
-           onclick="javascript:setTimeout(document.location='v2/people',3000);">
+           >
 </form>
 
 <script nonce="<?= SystemURLs::getCSPNonce() ?>" >
@@ -1250,15 +1249,6 @@ require 'Include/Header.php';
 		$("#famailyId").select2();;
 	});
 </script>
-<script>
-const personForm = document.getElementById('new_person_form');
-personForm.addEventListener('submit',(e)=>{
-    const alert = document.getElementById('record_saved');
-    alert.classList.add('disp-block')
-    
-    setTimeout(()=>alert.classList.remove('disp-block'),3000)
 
-})
-</script>
 
 <?php require 'Include/Footer.php' ?>

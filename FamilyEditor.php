@@ -639,8 +639,7 @@ require 'Include/Header.php';
 
 ?>
 
-<form method="post" action="FamilyEditor.php?FamilyID=<?php echo $iFamilyID ?>" id="new_family_form">
-<div class="alert alert-success person_success" id="record_saved">Record saved successfully! </div>
+<form method="post" action="FamilyEditor.php?FamilyID=<?php echo $iFamilyID ?>">
 	<input type="hidden" Name="iFamilyID" value="<?= $iFamilyID ?>">
 	<input type="hidden" name="FamCount" value="<?= $iFamilyMemberRows ?>">
 	<div class="box box-info clearfix">
@@ -1122,7 +1121,7 @@ require 'Include/Header.php';
     if ($iFamilyID > 0) {
         echo " onclick=\"javascript:document.location='v2/family/$iFamilyID';\">";
     } else {
-        echo " onclick=\"javascript:setTimeout(document.location='".SystemURLs::getRootPath()."/v2/family', 3000);\">";
+        echo " onclick=\"javascript:document.location='/v2/family');\">";
     }
     echo '</td></tr></form></table>';
 ?>
@@ -1133,16 +1132,5 @@ require 'Include/Header.php';
 		});
 
 	</script>
-
-    <script>
-        const familyForm = document.getElementById('new_family_form');
-        familyForm.addEventListener('submit',(e)=>{
-            const alert = document.getElementById('record_saved');
-            alert.classList.add('disp-block')
-        
-            setTimeout(()=>alert.classList.remove('disp-block'),3000)
-
-        })
-    </script>
 
 <?php require 'Include/Footer.php' ?>
