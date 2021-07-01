@@ -444,7 +444,7 @@ require 'Include/Header.php';
                             path: "groups/" + window.CRM.currentGroup,
                           }).done(function (data) {
                             if (data.status == "success")
-                              window.location.href = window.CRM.root + "/GroupList.php";
+                              window.location.href = window.CRM.root + "/sundayschool/SundaySchoolDashboard.php";
                           });
                       }
                     }

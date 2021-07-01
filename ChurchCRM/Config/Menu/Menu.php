@@ -31,23 +31,32 @@ class Menu
 
     private static function buildMenuItems()
     {
-       
         return array(
             "Dashboard" => new MenuItem(gettext("Dashboard"), "Menu.php", true, 'fa-dashboard'),
             "Calendar" => self::getCalendarMenu(),
             "People" => self::getPeopleMenu(),
-            // "Ministries" => self::getGroupMenu(),
+            // "Groups" => self::getGroupMenu(),
             "SundaySchool" => self::getSundaySchoolMenu(),
             // "Assets" => self::getAssetsMenu(),
             "Email" => new MenuItem(gettext("Email"), "v2/email/dashboard", SystemConfig::getBooleanValue("bEnabledEmail"), 'fa-envelope'),
             "Events" => self::getEventsMenu(),
             "Deposits" => self::getDepositsMenu(),
             "Fundraiser" => self::getFundraisersMenu(),
-            "Reports" => self::getReportsMenu(),
+            // "AssetsManagement" => self::getAssetsManagamentMenu(),
+            // "Reports" => self::getReportsMenu(),
             "Admin" => self::getAdminMenu(),
             "Custom" => self::getCustomMenu(),
         );
-        
+    }
+
+    private static function getAssetsManagamentMenu(){
+
+        $assetsManagementMenu = new MenuItem(gettext("Asset Management"), "", SystemConfig::getBooleanValue("bEnabledSundaySchool"), 'fa-barcode');
+        $assetsManagementMenu->addSubMenu(new MenuItem(gettext("Dashboard"), "assetmanagement/AssetManagementDashboard.php"));
+     
+
+        return $assetsManagementMenu;
+
     }
 
     private static function getCalendarMenu()
@@ -64,9 +73,7 @@ class Menu
         $peopleMenu = new MenuItem(gettext("People"), "", true, 'fa-users');
         $peopleMenu->addSubMenu(new MenuItem(gettext("Dashboard"), "PeopleDashboard.php"));
         $peopleMenu->addSubMenu(new MenuItem(gettext("Add New Person"), "PersonEditor.php", AuthenticationManager::GetCurrentUser()->isAddRecordsEnabled()));
-        $peopleMenu->addSubMenu(new MenuItem(gettext("View Active Persons"), "v2/people"));
-        $peopleMenu->addSubMenu(new MenuItem(gettext("View Inactive Persons"), "v2/people?familyActiveStatus=inactive"));
-        $peopleMenu->addSubMenu(new MenuItem(gettext("View All Persons"), "v2/people?familyActiveStatus=all"));
+        $peopleMenu->addSubMenu(new MenuItem(gettext("View All Persons"), "v2/people"));
         $peopleMenu->addSubMenu(new MenuItem(gettext("Add New Family"), "FamilyEditor.php", AuthenticationManager::GetCurrentUser()->isAddRecordsEnabled()));
         $peopleMenu->addSubMenu(new MenuItem(gettext("View Active Families"), "v2/family"));
         $peopleMenu->addSubMenu(new MenuItem(gettext("View Inactive Families"), "v2/family?mode=inactive"));
@@ -86,8 +93,8 @@ class Menu
 
     private static function getGroupMenu()
     {
-        $groupMenu = new MenuItem(gettext("Ministries"), "", true, 'fa-tag');
-        $groupMenu->addSubMenu(new MenuItem(gettext("List Ministries"), "GroupList.php"));
+        $groupMenu = new MenuItem(gettext("Groups"), "", true, 'fa-tag');
+        $groupMenu->addSubMenu(new MenuItem(gettext("List Groups"), "GroupList.php"));
 
         $listOptions = ListOptionQuery::Create()->filterById(3)->orderByOptionSequence()->find();
 
@@ -149,7 +156,7 @@ class Menu
         $eventsMenu = new MenuItem(gettext("Events"), "", SystemConfig::getBooleanValue("bEnabledEvents"), 'fa-ticket');
         $eventsMenu->addSubMenu(new MenuItem(gettext("Add Church Event"), "EventEditor.php", AuthenticationManager::GetCurrentUser()->isAddEventEnabled()));
         $eventsMenu->addSubMenu(new MenuItem(gettext("List Church Events"), "ListEvents.php"));
-        $eventsMenu->addSubMenu(new MenuItem(gettext("List Event Types"), "EventNames.php", AuthenticationManager::GetCurrentUser()->isAddEventEnabled()));
+        $eventsMenu->addSubMenu(new MenuItem(gettext("List Event Types"), "EventNames.php"));
         $eventsMenu->addSubMenu(new MenuItem(gettext("Check-in and Check-out"), "Checkin.php"));
         $eventsMenu->addSubMenu(new MenuItem(gettext('Event Attendance Reports'), "EventAttendance.php"));
         return $eventsMenu;
@@ -188,13 +195,13 @@ class Menu
         $fundraiserMenu->addCounter(new MenuCounter("iCurrentFundraiser", "bg-blue", $iCurrentFundraiser));
 
         return $fundraiserMenu;
-    } 
+    }
 
     private static function getReportsMenu()
     {
         $reportsMenu = new MenuItem(gettext("Data/Reports"), "", true, 'fa-file-pdf-o');
-        $reportsMenu->addSubMenu(new MenuItem(gettext('Canvass Automation'), "CanvassAutomation.php")); 
-        $reportsMenu->addSubMenu(new MenuItem(gettext("Query Menu"), "QueryList.php")); 
+        $reportsMenu->addSubMenu(new MenuItem(gettext('Canvass Automation'), "CanvassAutomation.php"));
+        $reportsMenu->addSubMenu(new MenuItem(gettext("Query Menu"), "QueryList.php"));
         return $reportsMenu;
     }
 
@@ -238,7 +245,12 @@ class Menu
         }
         return $menu;
     }
+<<<<<<< HEAD
     
  
 
 }   
+=======
+
+}
+>>>>>>> 3a6e972054abec56e9e64e6218f7532e32aff006

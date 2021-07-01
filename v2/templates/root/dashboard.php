@@ -10,7 +10,7 @@ include SystemURLs::getDocumentRoot() . '/Include/Header.php';
 
 <!-- Small boxes (Stat box) -->
 <div class="row">
-    <div class="col-lg-2 col-xs-4">
+    <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
@@ -29,7 +29,7 @@ include SystemURLs::getDocumentRoot() . '/Include/Header.php';
             </a>
         </div>
     </div><!-- ./col -->
-    <div class="col-lg-2 col-xs-4">
+    <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-green">
             <div class="inner">
@@ -50,7 +50,7 @@ include SystemURLs::getDocumentRoot() . '/Include/Header.php';
     </div><!-- ./col -->
     <?php if ($sundaySchoolEnabled) {
         ?>
-        <div class="col-lg-2 col-xs-4">
+        <div class="col-lg-3 col-xs-6">
             <!-- small box -->
             <div class="small-box bg-yellow">
                 <div class="inner">
@@ -71,9 +71,9 @@ include SystemURLs::getDocumentRoot() . '/Include/Header.php';
         </div><!-- ./col -->
         <?php
     } ?>
-    <div class="col-lg-2 col-xs-4">
+    <!-- <div class="col-lg-2 col-xs-4"> -->
         <!-- small box -->
-        <div class="small-box bg-red">
+        <!-- <div class="small-box bg-red">
             <div class="inner">
                 <h3 id="groupsCountDashboard">
                     <?= $dashboardCounts["Groups"] ?>
@@ -89,8 +89,9 @@ include SystemURLs::getDocumentRoot() . '/Include/Header.php';
                 <?= gettext('More info') ?>  <i class="fa fa-arrow-circle-right"></i>
             </a>
         </div>
-    </div><!-- ./col -->
-    <div class="col-lg-2 col-xs-4">
+    </div> -->
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-yellow">
             <div class="inner">
@@ -168,7 +169,7 @@ if ($depositEnabled) { // If the user has Finance permissions, then let's displa
                     <button type="button" class="btn btn-success"><?= gettext('Add New Person') ?></button>
                 </a>
                 <a href="<?= SystemURLs::getRootPath() ?>/FamilyEditor.php"
-                <button type="button" class="btn btn-success"><?= gettext('Add New Family') ?></button>
+                <button type="button" class="btn btn-success mr-2"><?= gettext('Add New Family') ?></button>
                 </a>
             </div>
         </div>
