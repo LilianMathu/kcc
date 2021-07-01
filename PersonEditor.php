@@ -441,7 +441,10 @@ if (isset($_POST['PersonSubmit']) || isset($_POST['PersonSubmitAndAdd'])) {
             $sPreviousPage = str_replace(';', '&', $sPreviousPage);
             RedirectUtils::Redirect($sPreviousPage.$iPersonID);
         } elseif (isset($_POST['PersonSubmit'])) {
+
             //Send to the view of this person
+          
+            sleep(2);
             RedirectUtils::Redirect('PersonView.php?PersonID='.$iPersonID);
         } else {
             //Reload to editor to add another record
@@ -599,6 +602,7 @@ $rsFamilyRoles = RunQuery($sSQL);
 require 'Include/Header.php';
 
 ?>
+
 <form method="post" action="PersonEditor.php?PersonID=<?= $iPersonID ?>" name="PersonEditor">
     <div class="alert alert-info alert-dismissable">
         <i class="fa fa-info"></i>
@@ -1226,7 +1230,9 @@ require 'Include/Header.php';
                                 }
                             } ?>
         </div>
+        
     </div>
+
   <?php
                         } ?>
     <input type="submit" class="btn btn-primary" id="PersonSaveButton" value="<?= gettext('Save') ?>" name="PersonSubmit">
@@ -1234,7 +1240,7 @@ require 'Include/Header.php';
                             echo '<input type="submit" class="btn btn-primary" value="'.gettext('Save and Add').'" name="PersonSubmitAndAdd">';
                         } ?>
     <input type="button" class="btn btn-primary" value="<?= gettext('Cancel') ?>" name="PersonCancel"
-           onclick="javascript:document.location='v2/people';">
+           >
 </form>
 
 <script nonce="<?= SystemURLs::getCSPNonce() ?>" >

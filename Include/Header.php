@@ -56,7 +56,7 @@ $MenuFirst = 1;
     <!-- Logo -->
     <a href="<?= SystemURLs::getRootPath() ?>/Menu.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><img src = "Images/church_letterhead.png"></span>
+      <span class="logo-mini"><img src = "../Images/kcc-image.png"></span>
       <!-- logo for regular state and mobile devices -->
       <?php
       $headerHTML = '<b>Church</b>CRM';
@@ -65,7 +65,7 @@ $MenuFirst = 1;
           $headerHTML = html_entity_decode($sHeader, ENT_QUOTES);
       }
       ?>
-      <span class="logo-lg"><?= $headerHTML ?></span>
+      <span class="logo-lg">KCC</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">

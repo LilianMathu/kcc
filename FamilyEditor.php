@@ -1121,7 +1121,7 @@ require 'Include/Header.php';
     if ($iFamilyID > 0) {
         echo " onclick=\"javascript:document.location='v2/family/$iFamilyID';\">";
     } else {
-        echo " onclick=\"javascript:document.location='".SystemURLs::getRootPath()."/v2/family';\">";
+        echo " onclick=\"javascript:document.location='/v2/family');\">";
     }
     echo '</td></tr></form></table>';
 ?>
@@ -1132,4 +1132,5 @@ require 'Include/Header.php';
 		});
 
 	</script>
+
 <?php require 'Include/Footer.php' ?>
